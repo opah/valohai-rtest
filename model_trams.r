@@ -25,6 +25,7 @@ for (v_line in lines){
     md_leg = leg_times_trams %>% 
       filter(desi == v_line, dir == v_dir, !is.na(model_hour), !is.na(weekday)) %>% 
       select(legTime, nextStop, weekday, model_hour)
+    if (nrow(md_leg) < 200) next
     print("Fitting leg time model...")
     gam_model <- gam(legTime ~ factor(nextStop) + factor(weekday) + s(model_hour,by=factor(weekday)), 
                      family = gaussian(link = "identity"), 
