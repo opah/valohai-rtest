@@ -4,10 +4,12 @@ library(stringr)
 library(dplyr)
 library(mgcv)
 
+installed.packages()
+
 leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE)
 str(leg_times_trams)
 
-lines <- unique(leg_times_trams$desi)
+lines <- sort(unique(leg_times_trams$desi))
 
 model_list <- list()
 res_model_list <- list()
@@ -27,6 +29,9 @@ for (v_line in lines){
     model_id <- str_c("L",v_line,v_dir)
     model_list[[model_id]] <- gam_model
     res_model_list[[model_id]] <- gam_res_model
+    png("/valohai/outputs/test.png")
+    plot(gam_model, pages=1)
+    dev.off()
   }
 }
 #save(model_list, res_modell_list, fil)
