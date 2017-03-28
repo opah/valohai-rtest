@@ -5,7 +5,6 @@
       - name: leg-times
         default: https://s3-eu-west-1.amazonaws.com/digitransit-public/leg_times_all_sample.csv
       - name: stop-data
-        default: https://s3-eu-west-1.amazonaws.com/digitransit-public/stop-data_all_sample.csv
+        default: https://s3-eu-west-1.amazonaws.com/digitransit-public/stop_data_all_sample.csv
     command:
-      - aws sync s3://digitransit-public/ .
-      - R helloworld.r
+      - R < model_trams.r
