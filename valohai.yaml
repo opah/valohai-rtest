@@ -1,6 +1,11 @@
 - step:
     name: hello-world
     image: rocker/tidyverse
+    inputs:
+      - name: leg-times
+        default: https://s3-eu-west-1.amazonaws.com/digitransit-public/leg_times_all_sample.csv
+      - name: stop-data
+        default: https://s3-eu-west-1.amazonaws.com/digitransit-public/stop-data_all_sample.csv
     command:
-      - pwd
+      - aws sync s3://digitransit-public/ .
       - R helloworld.r
