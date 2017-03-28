@@ -6,7 +6,8 @@ library(mgcv)
 
 installed.packages()
 
-leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE)
+leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE) %>%
+  mutate(model_hour = as.numeric(mode_hour))
 str(leg_times_trams)
 
 lines <- sort(unique(leg_times_trams$desi))
