@@ -4,7 +4,7 @@ library(stringr)
 library(dplyr)
 library(mgcv)
 
-leg_times_trams <- read.csv("/valohai/inputs/stop_data/leg_times_trams_sample.csv", stringsAsFactors = FALSE)
+leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE)
 str(stop_data)
 
 lines <- unique(leg_times_trams$desi)
