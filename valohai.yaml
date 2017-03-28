@@ -4,7 +4,7 @@
     inputs:
       - name: leg-times
         default: https://s3-eu-west-1.amazonaws.com/digitransit-public/leg_times_all_sample.csv
-      - name: stop-data
+      - name: stop_data
         default: https://s3-eu-west-1.amazonaws.com/digitransit-public/stop_data_all_sample.csv
     command:
       - R < model_trams.r
