@@ -22,7 +22,9 @@ model_info <- data.frame(id = numeric(), line = character(), dir = numeric())
 for (v_line in lines){
   for (v_dir in 1:2){
     print(str_c("line: ", v_line, " dir: ", v_dir))
-    md_leg = leg_times_trams %>% filter(desi == v_line, dir == v_dir)
+    md_leg = leg_times_trams %>% 
+      filter(desi == v_line, dir == v_dir, !is.na(model_hour), !is.na(weekday)) %>% 
+      select(legTime, nextStop, weekday, model_hour)
     print("Fitting leg time model...")
     gam_model <- gam(legTime ~ factor(nextStop) + factor(weekday) + s(model_hour,by=factor(weekday)), 
                      family = gaussian(link = "identity"), 
