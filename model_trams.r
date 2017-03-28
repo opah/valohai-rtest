@@ -7,7 +7,7 @@ library(mgcv)
 
 leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE) %>%
   mutate(timest = ymd_hms(timest, tz = "EET"),
-         model_hour = as.numeric(format(timest, "%H")) + as.numeric(format(timest, "%m"))*60/100,
+         model_hour = as.numeric(format(timest, "%H")) + as.numeric(format(timest, "%M"))*60/100,
          model_hour = ifelse(model_hour < 5, model_hour + 24, model_hour),
          weekday = as.numeric(format(timest, "%w")),
          weekday = ifelse(model_hour < 5, weekday - 1, weekday),
