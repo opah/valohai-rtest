@@ -4,10 +4,9 @@ library(stringr)
 library(dplyr)
 library(mgcv)
 
-installed.packages()
 
 leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE) %>%
-  mutate(model_hour = as.numeric(mode_hour))
+  mutate(model_hour = as.numeric(model_hour))
 str(leg_times_trams)
 
 lines <- sort(unique(leg_times_trams$desi))
