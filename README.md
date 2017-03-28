@@ -1,2 +1,2 @@
 # valohai-rtest
-Test runnign R in Valohai
+Test running R in Valohai
