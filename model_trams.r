@@ -7,7 +7,11 @@ library(mgcv)
 library(foreach)
 library(doParallel)
 
-cl<-makeCluster(8)
+
+args <- commandArgs(trailingOnly = TRUE)
+print(paste("args:",args))
+
+cl<-makeCluster(1)
 registerDoParallel(cl)
 
 leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE) %>%
