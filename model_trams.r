@@ -11,8 +11,11 @@ library(doParallel)
 args <- commandArgs(trailingOnly = TRUE)
 print(paste("args:",args))
 
-cl<-makeCluster(1)
+
+cl<-makeCluster(8)
 registerDoParallel(cl)
+
+system.time(foreach (i=1:5, .combine='c') %dopar% {Sys.sleep(2);i})
 
 leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE) %>%
   mutate(timest = ymd_hms(timest, tz = "EET"),
