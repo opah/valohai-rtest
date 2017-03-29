@@ -15,7 +15,6 @@ print(paste("args:",args))
 cl<-makeCluster(8)
 registerDoParallel(cl)
 
-system.time(foreach (i=1:5, .combine='c') %dopar% {Sys.sleep(2);i})
 
 leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.csv", stringsAsFactors = FALSE) %>%
   mutate(timest = ymd_hms(timest, tz = "EET"),
@@ -33,6 +32,7 @@ res_model_list <- list()
 model_info <- data.frame(id = numeric(), line = character(), dir = numeric())
 
 
+print("Fitting models...")
 models <- foreach(v_line = rep(lines,each=2),
                   v_dir = rep(1:2,times=length(lines))) %do% {
   md_leg = leg_times_trams %>% 
@@ -45,11 +45,14 @@ models <- foreach(v_line = rep(lines,each=2),
     gam_res_model <- gam(res ~ factor(nextStop) + factor(weekday) + s(model_hour,by=factor(weekday)), family = Gamma(link = "log"),
                          data = md_leg %>%
                            mutate(res = abs(legTime - predict(gam_model))))
+    print(str_c("Model ready for ", v_line, " ", v_dir))
     list(avg_model = gam_model, var_model = gam_res_model)
   }
 }
 
+print("Saving models")
 save(models, file = "tram_leg_models.RData")
+print("Ready")
 
 # for (v_line in lines){
 #   for (v_dir in 1:2){

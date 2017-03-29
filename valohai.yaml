@@ -7,7 +7,7 @@
       - name: stop_data
         default: https://s3-eu-west-1.amazonaws.com/digitransit-public/stop_data_trams_sample.csv
     command:
-      - 'Rscript {params} < model_trams.r'
+      - 'Rscript model_trams.r {params}'
     outputs:
       - name: models
         description: Fitted models as RData
