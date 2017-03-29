@@ -13,10 +13,3 @@
         description: Fitted models as RData
         files:
           - tram_leg_models.RData
-    parameters:
-      - name: cores
-        pass-as: {v}
-        description: Number of cores
-        type: integer
-        min: 1
-        optional: true
