@@ -14,3 +14,9 @@
         type: integer
         min: 1
         optional: true
+        pass-as: {v}
+    output:
+      - name: models
+        description: Fitted models as RData
+        files:
+          - tram_leg_models.RData

@@ -25,7 +25,6 @@ leg_times_trams <- read.csv("/valohai/inputs/leg_times/leg_times_trams_sample.cs
          weekday = ifelse(model_hour < 5, weekday - 1, weekday),
          weekday = ifelse(weekday < 1, weekday + 7, weekday)) %>% 
   filter(!is.na(weekday), !is.na(model_hour))
-str(leg_times_trams)
 
 lines <- sort(unique(leg_times_trams$desi))
 
@@ -50,7 +49,7 @@ models <- foreach(v_line = rep(lines,each=2),
   }
 }
 
-
+save(models, file = "tram_leg_models.RData")
 
 # for (v_line in lines){
 #   for (v_dir in 1:2){
